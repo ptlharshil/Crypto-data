@@ -1,58 +1,51 @@
-import { Component, AfterViewInit, OnDestroy } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { ServiceService } from './service.service';
-import {Chart, registerables} from 'chart.js'
+import { Chart, registerables } from 'chart.js'
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  @ViewChild('box', { static: false }) box!: ElementRef<HTMLInputElement>
   title = 'Crypto-data';
-  inputValue: any
-  val=''
-  info:any=[]
-  newChart:any=Chart
-  //charts:any
-  currency=''
-  coinName:any
-  currentIndex=0
-  canvasDiv:any
-  newCan:any
-  chart:any=Chart
-  length=0
-  count=0
-  
-  constructor(private service:ServiceService){
+  val = ''
+  newChart: any = Chart
+  currency = ''
+  canvasDiv: any
+  newCan: any
+  chart: any = Chart
+  count = 0
+
+  constructor(private service: ServiceService) {
     Chart.register(...registerables)
   }
-  // ngAfterViewInit() {
-  //   this.createChart();
-  // }
 
-  // createChart() {
-  //   const canvas = document.getElementById('canvas0') as HTMLCanvasElement;
 
-  //   if (this.newChart) {
-  //     this.ctx = canvas.getContext('2d');
-  //     this.ctx.clearRect(0, 0, canvas.width, canvas.height);
-  //   }
-
-  // }
-
-  getValue(val:string){
-    // this.createChart()
+  getValue(val: string) {
     this.count++
-    this.canvasDiv=document.getElementById('canvasWrap')
-    this.newCan=document.createElement('canvas')
-    this.newCan.id='canvas'+`${this.count}`
-    this.newChart=this.service.currencyData(val,this.count)
-    this.canvasDiv.append(this.newCan)
-    
+    this.canvasDiv = document.getElementById('canvasWrap')
+    this.newCan = document.createElement('canvas')
+    this.newCan.id = 'canvas' + `${this.count}`
+    if (this.count > 1) {
+      var canvasElements = Array.from(this.canvasDiv.querySelectorAll('canvas'));
+      this.newChart = this.service.currencyData(val, this.count)
+      canvasElements.splice(0, 0, this.newCan)
+
+      for (const canvas of canvasElements) {
+
+        this.canvasDiv.appendChild(canvas);
+      }
+    } else {
+      this.newChart = this.service.currencyData(val, this.count)
+      this.canvasDiv.append(this.newCan)
+    }
+    this.box.nativeElement.value = '';
   }
-  
-  ngOnInit(){
-    
-  
-    this.chart=this.service.cryptoData()
+
+  ngOnInit() {
+
+
+    this.chart = this.service.cryptoData()
   }
 }

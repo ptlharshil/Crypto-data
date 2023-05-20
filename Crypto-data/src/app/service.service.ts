@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
+import { Injectable,ViewChild, ElementRef } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Chart } from 'chart.js'
 
-const apiKey = 'coinrankingc3241fd9ebbd571d3101fb333a248b8d026d3d88bebd95c9'
+const apiKey = ''
 const Headers = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json',
@@ -14,12 +14,14 @@ const Headers = {
   providedIn: 'root'
 })
 export class ServiceService {
-  result: any
+  @ViewChild('error', { static: false }) error!: ElementRef<HTMLDivElement>;
+ 
   coinPrice: any
   coinName: any
   chart: any = []
   curr=''
-  display=''
+  errorDiv:any
+  divError:any
   private url = "https://api.coinranking.com/v2/coins"
 
   constructor(private http: HttpClient) { }
@@ -31,10 +33,28 @@ export class ServiceService {
     this.http.get(apiCall, Headers).subscribe((data) => {
     
     res = data
-
+    this.coinName = res.data.coins.map((coin: any) => coin.name.toLowerCase())
+    if(!this.coinName.includes(value.toLowerCase())){
+      this.errorDiv=document.getElementById('error')
+      var errorElement=document.createElement('span')
+      errorElement.innerHTML='Please enter a valid currency name'
+      this.errorDiv.appendChild(errorElement)
+    }
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+  
+    for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
     res.data.coins.map((coin:any)=>{
-      if(coin.name===value)
+      if(coin.name.toLowerCase()===value.toLowerCase())
       {
+           
+        this.divError=document.getElementById('error')
+        if(this.divError.firstChild)
+        {
+          this.divError.removeChild(this.divError.firstChild)     
+        }
         this.chart = new Chart('canvas'+`${count}`, {
           type: 'line',
           data: {
@@ -45,8 +65,8 @@ export class ServiceService {
                 data: coin.sparkline,
                 borderWidth: 3,
                 fill: false,
-                backgroundColor: "yellow",
-                borderColor: "red"
+                backgroundColor: color,
+                borderColor: color
               }
             ]
           }
