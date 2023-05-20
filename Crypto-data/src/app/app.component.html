@@ -1,0 +1,85 @@
+<style>
+  
+  /* #canvasWrapper{
+    margin-top: 80px;
+    height: 70vh;
+  } */
+  
+  .spacer {
+    flex: 1;
+  }
+
+  .toolbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    background-color: #1976d2;
+    color: white;
+    font-weight: 600;
+  }
+
+  .title{
+    margin: auto;
+  }
+  
+  .inputWrapper{
+    display: inline-block;
+    margin-top: 90px;
+  }
+  .para{
+    display: inline-block;
+    margin-left: 250px;
+    margin-right: 30px;
+  }
+  .currencyName{
+    display: inline-block;
+    margin-right: 30px;
+    border-color: #1976d2;
+    border-radius: 5px;
+    height: 25px;
+  }
+  .viewButton{
+    display: inline-block;
+    border-radius: 5px;
+    height: 32px;
+    background-color: #1976d2;
+    border-color: black;
+    color: white;
+  }
+  .viewButton:hover{
+    background-color: black;
+    border-color: #1976d2;
+  }
+</style>
+
+
+
+<!-- Toolbar -->
+<div class="toolbar" role="banner">
+  
+  <h1 class="title">Crypto-Data</h1>
+    
+</div>
+<div class="inputWrapper">
+  <h3 class="para">View the 24 hour price fluctuations of any currency: </h3>
+  <input type="text" #box class="currencyName"/>
+  <button class="viewButton" (click)="getValue(box.value)"><b>View Rates</b></button>
+</div>
+<div>
+  <span class="error">Please enter a valid currency name</span>
+</div>
+<div id="canvasWrap">
+  <!-- <canvas>{{newChart}}</canvas> -->
+</div>
+<div id="canvasWrapper">
+  <canvas id="canvas">{{chart}}</canvas>
+</div>
+
+
+
+
+<router-outlet></router-outlet>
