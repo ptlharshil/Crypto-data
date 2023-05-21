@@ -53,27 +53,50 @@
     border-color: #1976d2;
   }
 
+  .compareBtn {
+    display: inline-block;
+    border-radius: 5px;
+    height: 32px;
+    background-color: #1976d2;
+    border-color: black;
+    color: white;
+  }
+
+  .compareBtn:hover {
+    background-color: black;
+    border-color: #1976d2;
+  }
+
   #error {
     margin-left: 700px;
     color: #1976d2;
   }
 </style>
+<div *ngIf="showNewComponent">
+  <app-currency-rate (hideComponent)="showNewComponent = false"></app-currency-rate>
+</div>
+<div *ngIf="!showNewComponent">
+  <div class="toolbar" role="banner">
 
-<div class="toolbar" role="banner">
+    <h1 class="title">Crypto-Data</h1>
 
-  <h1 class="title">Crypto-Data</h1>
+  </div>
+  <div class="inputWrapper">
+    <input type="text" #box1 placeholder="Currency 1">
+    <input type="text" #box2 placeholder="Currency 2">
+    <input type="text" #box3 placeholder="Currency 3">
+    <button class="compareBtn" (click)="comparison(box1.value,box2.value,box3.value)">Compare Prices</button>
+    <p>or</p>
+    <button class="viewButton" (click)="showNewComponent = true"><b>View Rates</b></button>
 
+  </div>
+  <div id="error" #error>
+  </div>
+  <div id='compareWrap'>
+  </div>
+
+
+  <div id="canvasWrapper">
+    <canvas id="canvas">{{chart}}</canvas>
+  </div>
 </div>
-<div class="inputWrapper">
-  <h3 class="para">View the 24 hour price fluctuations of any currency: </h3>
-  <input type="text" #box class="currencyName" placeholder="Bitcoin/Monero/TRON"/>
-  <button class="viewButton" (click)="getValue(box.value)"><b>View Rates</b></button>
-</div>
-<div id="error" #error>
-</div>
-<div id="canvasWrap">
-</div>
-<div id="canvasWrapper">
-  <canvas id="canvas">{{chart}}</canvas>
-</div>
-<router-outlet></router-outlet>

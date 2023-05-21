@@ -5,10 +5,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ServiceService } from './service.service';
 import { HttpClientModule } from '@angular/common/http';
+import { CurrencyRateComponent } from './currency-rate/currency-rate.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CurrencyRateComponent
+
   ],
   imports: [
     BrowserModule,

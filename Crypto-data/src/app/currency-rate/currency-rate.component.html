@@ -1,0 +1,38 @@
+<style>
+    .spacer {
+        flex: 1;
+    }
+
+    .toolbar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        background-color: #1976d2;
+        color: white;
+        font-weight: 600;
+    }
+
+    #wrapper {
+        margin-top: 150px;
+    }
+</style>
+<div class="toolbar" role="banner">
+
+    <h1 class="title">Crypto-Data</h1>
+
+</div>
+<div id="wrapper">
+    <button (click)="hideComponent.emit()">Compare Prices</button>
+
+    <h3 class="title">View the 24 hour price fluctuations of any currency: </h3>
+    <input type="text" #box class="currencyName" placeholder="Bitcoin/Monero/TRON" />
+    <button class="viewButton" (click)="getValue(box.value)"><b>View Rates</b></button>
+    <div id="error" #error>
+    </div>
+</div>
+<div id="canvasWrap">
+</div>
