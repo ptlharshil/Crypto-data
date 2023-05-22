@@ -15,50 +15,54 @@
         color: white;
         font-weight: 600;
     }
+
     .title {
         margin: auto;
         display: inline-block;
     }
+
     #wrapper {
         margin-top: 90px;
         display: flex;
-        justify-content: center;    }
+        justify-content: center;
+    }
 
-  .titleText{
-    margin-top: 10px;
-  }
+    .titleText {
+        margin-top: 10px;
+    }
 
-  #viewButton:hover {
-    background-color: black;
-    border-color: #1976d2;
-  }
-  #error{
-    margin-left: 500px;
-    margin-top: 30px;
-    color: #1976d2
-  }
+    #viewButton:hover {
+        background-color: black;
+        border-color: #1976d2;
+    }
+
+    #error {
+        margin-left: 500px;
+        margin-top: 30px;
+        color: #1976d2
+    }
 </style>
 <div class="toolbar" role="banner">
     <h1 class="title">Crypto-Data</h1>
 </div>
 <div id="wrapper">
-    <div class="row g-3" >
+    <div class="row g-3">
         <div class="col">
-             <button class="btn btn-info" (click)="hideComponent.emit()">Back</button>
-          </div>
+            <button class="btn btn-info" (click)="hideComponent.emit()">Back</button>
+        </div>
         <div class="col">
             <h6 class="titleText">Enter Currency: </h6>
         </div>
         <div class="col">
-          <input type="text" #box class="form-control" placeholder="Bitcoin/Monero/TRON" aria-label="Last name">
+            <input type="text" #box class="form-control" placeholder="Bitcoin/Monero/TRON" aria-label="Last name">
         </div>
         <div class="col">
             <button class="btn btn-primary" id="viewButton" (click)="getValue(box.value)"><b>View Rates</b></button>
         </div>
-      </div>
-    
+    </div>
+
 </div>
 <div id="error" #error>
-</div> 
+</div>
 <div id="canvasWrap">
 </div>

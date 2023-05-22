@@ -41,8 +41,8 @@ export class ServiceService {
       res = data
       this.coinName = res.data.coins.map((coin: any) => coin.name.toLowerCase())
       if (!this.coinName.includes(val1.toLowerCase()) &&
-        !this.coinName.includes(val1.toLowerCase()) &&
-        !this.coinName.includes(val1.toLowerCase())) {
+        !this.coinName.includes(val2.toLowerCase()) &&
+        !this.coinName.includes(val3.toLowerCase())) {
         this.errorDiv = document.getElementById('error')
         var errorElement = document.createElement('span')
         errorElement.innerHTML = 'Please enter a valid currency name'
