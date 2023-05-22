@@ -15,10 +15,58 @@
         color: white;
         font-weight: 600;
     }
-
-    #wrapper {
-        margin-top: 150px;
+    .title {
+        margin: auto;
+        display: inline-block;
     }
+    #wrapper {
+        margin-top: 80px;
+        display: inline-block;
+    }
+    .compareBtn {
+    display: inline-block;
+    border-radius: 5px;
+    height: 32px;
+    background-color: #1976d2;
+    border-color: black;
+    color: white;
+    margin-left: 50px;
+    margin-right: 140px;
+  }
+  .titleText{
+    display: inline-block;
+    margin-right: 50px;
+  }
+  .compareBtn:hover {
+    background-color: black;
+    border-color: #1976d2;
+  }
+  .currencyName{
+    display: inline-block;
+    height: 25px;
+    border-radius: 5px;
+    display: inline-block;
+    border-color: #1976d2;
+  }
+  .viewButton {
+    display: inline-block;
+    border-radius: 5px;
+    height: 32px;
+    background-color: #1976d2;
+    border-color: black;
+    color: white;
+    margin-left: 50px;
+  }
+
+  .viewButton:hover {
+    background-color: black;
+    border-color: #1976d2;
+  }
+  #error{
+    margin-left: 500px;
+    margin-top: 30px;
+    color: #1976d2
+  }
 </style>
 <div class="toolbar" role="banner">
 
@@ -26,10 +74,10 @@
 
 </div>
 <div id="wrapper">
-    <button (click)="hideComponent.emit()">Compare Prices</button>
-
-    <h3 class="title">View the 24 hour price fluctuations of any currency: </h3>
-    <input type="text" #box class="currencyName" placeholder="Bitcoin/Monero/TRON" />
+    <button class="compareBtn" (click)="hideComponent.emit()">Back</button>
+    
+    <h3 class="titleText">View the 24 hour price fluctuations of any currency: </h3>
+    <input type="text"  #box class="currencyName" placeholder="Bitcoin/Monero/TRON" />
     <button class="viewButton" (click)="getValue(box.value)"><b>View Rates</b></button>
     <div id="error" #error>
     </div>

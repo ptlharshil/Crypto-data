@@ -60,6 +60,7 @@
     background-color: #1976d2;
     border-color: black;
     color: white;
+    margin-left: 50px;
   }
 
   .compareBtn:hover {
@@ -68,8 +69,22 @@
   }
 
   #error {
-    margin-left: 700px;
+    margin-left: 500px;
+    margin-top: 30px;
     color: #1976d2;
+  }
+  .box1, .box2, .box3{
+    display: inline-block;
+    border-color: #1976d2;
+    margin-left: 50px;
+    margin-right: 50px;
+    height: 25px;
+    border-radius: 5px;
+  }
+  .or{
+    display: inline-block;
+    margin-left: 50px;
+    margin-right: 50px;
   }
 </style>
 <div *ngIf="showNewComponent">
@@ -82,11 +97,11 @@
 
   </div>
   <div class="inputWrapper">
-    <input type="text" #box1 placeholder="Currency 1">
-    <input type="text" #box2 placeholder="Currency 2">
-    <input type="text" #box3 placeholder="Currency 3">
-    <button class="compareBtn" (click)="comparison(box1.value,box2.value,box3.value)">Compare Prices</button>
-    <p>or</p>
+    <input type="text" class="box1" #box1 placeholder="Currency 1 (Bitcoin)">
+    <input type="text" class="box2" #box2 placeholder="Currency 2 (USDC)">
+    <input type="text" class="box3" #box3 placeholder="Currency 3 (Litecoin)">
+    <button class="compareBtn" (click)="comparison(box1.value,box2.value,box3.value)"><b>Compare Prices</b></button>
+    <p class="or">or</p>
     <button class="viewButton" (click)="showNewComponent = true"><b>View Rates</b></button>
 
   </div>
