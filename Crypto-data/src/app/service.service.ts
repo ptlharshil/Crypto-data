@@ -117,6 +117,10 @@ export class ServiceService {
     this.http.get(apiCall, Headers).subscribe((data) => {
 
       res = data
+      this.divError = document.getElementById('error')
+      if (this.divError.firstChild) {
+        this.divError.removeChild(this.divError.firstChild)
+      }
       this.coinName = res.data.coins.map((coin: any) => coin.name.toLowerCase())
       if (!this.coinName.includes(value.toLowerCase())) {
         this.errorDiv = document.getElementById('error')

@@ -20,45 +20,15 @@
         display: inline-block;
     }
     #wrapper {
-        margin-top: 80px;
-        display: inline-block;
-    }
-    .compareBtn {
-    display: inline-block;
-    border-radius: 5px;
-    height: 32px;
-    background-color: #1976d2;
-    border-color: black;
-    color: white;
-    margin-left: 50px;
-    margin-right: 140px;
-  }
+        margin-top: 90px;
+        display: flex;
+        justify-content: center;    }
+
   .titleText{
-    display: inline-block;
-    margin-right: 50px;
-  }
-  .compareBtn:hover {
-    background-color: black;
-    border-color: #1976d2;
-  }
-  .currencyName{
-    display: inline-block;
-    height: 25px;
-    border-radius: 5px;
-    display: inline-block;
-    border-color: #1976d2;
-  }
-  .viewButton {
-    display: inline-block;
-    border-radius: 5px;
-    height: 32px;
-    background-color: #1976d2;
-    border-color: black;
-    color: white;
-    margin-left: 50px;
+    margin-top: 10px;
   }
 
-  .viewButton:hover {
+  #viewButton:hover {
     background-color: black;
     border-color: #1976d2;
   }
@@ -69,18 +39,26 @@
   }
 </style>
 <div class="toolbar" role="banner">
-
     <h1 class="title">Crypto-Data</h1>
-
 </div>
 <div id="wrapper">
-    <button class="compareBtn" (click)="hideComponent.emit()">Back</button>
+    <div class="row g-3" >
+        <div class="col">
+             <button class="btn btn-info" (click)="hideComponent.emit()">Back</button>
+          </div>
+        <div class="col">
+            <h6 class="titleText">Enter Currency: </h6>
+        </div>
+        <div class="col">
+          <input type="text" #box class="form-control" placeholder="Bitcoin/Monero/TRON" aria-label="Last name">
+        </div>
+        <div class="col">
+            <button class="btn btn-primary" id="viewButton" (click)="getValue(box.value)"><b>View Rates</b></button>
+        </div>
+      </div>
     
-    <h3 class="titleText">View the 24 hour price fluctuations of any currency: </h3>
-    <input type="text"  #box class="currencyName" placeholder="Bitcoin/Monero/TRON" />
-    <button class="viewButton" (click)="getValue(box.value)"><b>View Rates</b></button>
-    <div id="error" #error>
-    </div>
 </div>
+<div id="error" #error>
+</div> 
 <div id="canvasWrap">
 </div>
